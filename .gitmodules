@@ -1,0 +1,6 @@
+[submodule "binaryen"]
+    path = ThirdParty/binaryen
+    url = https://github.com/WebAssembly/binaryen.git
+[submodule "popl"]
+    path = ThirdParty/popl
+    url = https://github.com/badaix/popl.git
