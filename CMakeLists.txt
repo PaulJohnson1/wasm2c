@@ -8,7 +8,7 @@ find_package(Threads REQUIRED)
 
 set(BINARYEN_DIR ThirdParty/binaryen)
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS "")
+set(CMAKE_CXX_FLAGS "-g")
 add_subdirectory(${BINARYEN_DIR} ${CMAKE_CURRENT_BINARY_DIR}/ThirdParty/binaryen)
 
 include_directories(${BINARYEN_DIR}/src ThirdParty/popl/include)
