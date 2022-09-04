@@ -409,9 +409,20 @@ void GetWasm2cExperssion(std::string &output, wasm::Expression *expression, size
         bool grouped = instruction->left->_id == wasm::Expression::BinaryId || instruction->left->_id == wasm::Expression::UnaryId || instruction->left->_id == wasm::Expression::LocalSetId;
         if (grouped)
             output += "(";
+        
+        if (instruction->left->_id == wasm::Expression::IfId)
+        {
+            indentation += "    ";
+            output += "(";
+        }
         expressionDepth++;
         GetWasm2cExperssion(output, instruction->left, depth + 1);
         expressionDepth--;
+        if (instruction->left->_id == wasm::Expression::IfId)
+        {
+            indentation = indentation.substr(4);
+            output += indentation + ")";
+        }
         if (grouped)
             output += ")";
 
@@ -553,9 +564,19 @@ void GetWasm2cExperssion(std::string &output, wasm::Expression *expression, size
         grouped = instruction->right->_id == wasm::Expression::BinaryId || instruction->right->_id == wasm::Expression::UnaryId || instruction->right->_id == wasm::Expression::LocalSetId;
         if (grouped)
             output += "(";
+        if (instruction->right->_id == wasm::Expression::IfId)
+        {
+            indentation += "    ";
+            output += "(";
+        }
         expressionDepth++;
         GetWasm2cExperssion(output, instruction->right, depth + 1);
         expressionDepth--;
+        if (instruction->right->_id == wasm::Expression::IfId)
+        {
+            indentation = indentation.substr(4);
+            output += indentation + ")";
+        }
         if (grouped)
             output += ")";
 
