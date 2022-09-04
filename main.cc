@@ -81,6 +81,8 @@ void GetWasm2cExperssion(std::string &output, wasm::Expression *expression, size
             GetWasm2cExperssion(output, operand, depth + 1);
             if (i != functionCall->operands.size() - 1)
                 output += ", ";
+            else if (operand->_id == wasm::Expression::IfId)
+                output += indentation;
             i++;
         }
         output += ")";
